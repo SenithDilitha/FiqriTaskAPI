@@ -5,9 +5,11 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPI", "TaskAPI\TaskAPI.csproj", "{2C4A2FB3-2CE2-4533-A878-997B1456014C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskAPI.Models", "TaskAPI.Models\TaskAPI.Models.csproj", "{30C70B6F-0405-4EC5-8117-5B09321F4283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPI.Models", "TaskAPI.Models\TaskAPI.Models.csproj", "{30C70B6F-0405-4EC5-8117-5B09321F4283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskAPI.Services", "TaskAPI.Services\TaskAPI.Services.csproj", "{178EBDE5-6482-4344-BD53-AEE2B1B7E399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskAPI.Services", "TaskAPI.Services\TaskAPI.Services.csproj", "{178EBDE5-6482-4344-BD53-AEE2B1B7E399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskAPI.DataAccess", "TaskAPI.DataAccess\TaskAPI.DataAccess.csproj", "{1AEE3D86-2483-470C-947A-65CDCAFA3757}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{178EBDE5-6482-4344-BD53-AEE2B1B7E399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{178EBDE5-6482-4344-BD53-AEE2B1B7E399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{178EBDE5-6482-4344-BD53-AEE2B1B7E399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AEE3D86-2483-470C-947A-65CDCAFA3757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AEE3D86-2483-470C-947A-65CDCAFA3757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AEE3D86-2483-470C-947A-65CDCAFA3757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AEE3D86-2483-470C-947A-65CDCAFA3757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
