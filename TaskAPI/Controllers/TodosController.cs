@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaskAPI.Models;
 using TaskAPI.Services;
 
 namespace TaskAPI.Controllers
@@ -12,11 +11,11 @@ namespace TaskAPI.Controllers
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private TodosService _todosService;
+        private ITodoRepository _todosService;
 
-        public TodosController()
+        public TodosController(ITodoRepository repository)
         {
-            _todosService = new TodosService();
+            _todosService = repository;
         }
 
         [HttpGet("{id?}")]
