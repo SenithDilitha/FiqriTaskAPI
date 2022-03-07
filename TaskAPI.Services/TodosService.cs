@@ -4,7 +4,7 @@ using TaskAPI.Models;
 
 namespace TaskAPI.Services
 {
-    public class TodosService
+    public class TodosService : ITodoRepository
     {
         public List<Todo> AllTodos()
         {
