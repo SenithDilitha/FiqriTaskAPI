@@ -3,34 +3,42 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaskAPI.Services;
+using TaskAPI.Services.Todos;
 
 namespace TaskAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/todos")]
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private ITodoRepository _todosService;
+        private readonly ITodoRepository _todosService;
 
         public TodosController(ITodoRepository repository)
         {
             _todosService = repository;
         }
 
-        [HttpGet("{id?}")]
-        public IActionResult GetTodos(int? id)
+        [HttpGet]
+        public IActionResult GetTodos()
         {
             var myTodos = _todosService.AllTodos();
-
-            if (id == null)
-            {
-                return Ok(myTodos);
-            }
             
-            return Ok(myTodos.Where(t=>t.Id==id));
+            return Ok(myTodos );
         }
 
-        
+        [HttpGet("{id}")]
+        public IActionResult GetTodo(int id)
+        {
+            var todo = _todosService.GetTodo(id);
+
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(todo);
+        }
+
+
     }
 }

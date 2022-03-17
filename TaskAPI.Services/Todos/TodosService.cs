@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TaskAPI.Models;
 
-namespace TaskAPI.Services
+namespace TaskAPI.Services.Todos
 {
     public class TodosService : ITodoRepository
     {
@@ -33,6 +33,11 @@ namespace TaskAPI.Services
             todos.Add(todo2);
 
             return todos;
+        }
+
+        public Todo GetTodo(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
