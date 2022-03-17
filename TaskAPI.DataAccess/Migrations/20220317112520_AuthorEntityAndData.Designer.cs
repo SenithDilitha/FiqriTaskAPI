@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPI.DataAccess;
 
 namespace TaskAPI.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDBContext))]
-    partial class TodoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220317112520_AuthorEntityAndData")]
+    partial class AuthorEntityAndData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace TaskAPI.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Author");
 
                     b.HasData(
                         new
@@ -82,9 +84,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 3,
                             AuthorId = 1,
-                            Created = new DateTime(2022, 3, 17, 17, 18, 10, 409, DateTimeKind.Local).AddTicks(7382),
+                            Created = new DateTime(2022, 3, 17, 16, 55, 19, 919, DateTimeKind.Local).AddTicks(5136),
                             Description = "Get some text books for school DB",
-                            Due = new DateTime(2022, 3, 19, 17, 18, 10, 410, DateTimeKind.Local).AddTicks(4414),
+                            Due = new DateTime(2022, 3, 19, 16, 55, 19, 921, DateTimeKind.Local).AddTicks(5434),
                             Status = 0,
                             Title = "Get books for school from DB"
                         });

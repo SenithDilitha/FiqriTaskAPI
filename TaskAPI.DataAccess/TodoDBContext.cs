@@ -11,6 +11,7 @@ namespace TaskAPI.DataAccess
     public class TodoDBContext : DbContext
     {
         public DbSet<Todo> Todos { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,7 +28,13 @@ namespace TaskAPI.DataAccess
                 Description = "Get some text books for school DB",
                 Created = DateTime.Now,
                 Due = DateTime.Now.AddDays(2),
-                Status = TodoStatus.New
+                Status = TodoStatus.New,
+                AuthorId = 1,
+            });
+
+            modelBuilder.Entity<Author>().HasData(new Author[]{
+                new Author{ Id = 1, FullName="Author1"},
+                new Author{ Id = 2, FullName="Author2"}
             });
         }
     }
