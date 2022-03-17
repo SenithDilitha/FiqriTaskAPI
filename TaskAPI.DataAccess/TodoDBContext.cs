@@ -14,7 +14,7 @@ namespace TaskAPI.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=localhost; Database=MyTodoDB; User Id=sa2; Password=Welcome123";
+            var connectionString = "Server=localhost; Database=MyTodoDB; User Id=sa; Password=sa1234";
             optionsBuilder.UseSqlServer(connectionString);
         }
 
