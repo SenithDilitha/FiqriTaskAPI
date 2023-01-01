@@ -22,11 +22,10 @@ namespace TaskAPI.Controllers
         public IActionResult GetTodos()
         {
             var myTodos = _todosService.AllTodos();
-            
-            return Ok(myTodos );
+            return Ok(myTodos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id?}")]
         public IActionResult GetTodo(int id)
         {
             var todo = _todosService.GetTodo(id);
@@ -37,8 +36,10 @@ namespace TaskAPI.Controllers
             }
 
             return Ok(todo);
+
+            if (todo == null) return NotFound();
+
+            return Ok(todo);
         }
-
-
     }
 }

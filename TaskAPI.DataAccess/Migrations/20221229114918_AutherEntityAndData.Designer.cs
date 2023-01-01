@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPI.DataAccess;
 
 namespace TaskAPI.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDBContext))]
-    partial class TodoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221229114918_AutherEntityAndData")]
+    partial class AutherEntityAndData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +33,7 @@ namespace TaskAPI.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Author");
 
                     b.HasData(
                         new
@@ -92,9 +94,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
-                            Created = new DateTime(2023, 1, 1, 21, 8, 2, 252, DateTimeKind.Local).AddTicks(6819),
+                            Created = new DateTime(2022, 12, 29, 17, 19, 17, 895, DateTimeKind.Local).AddTicks(1440),
                             Description = "Get some text books for school DB",
-                            Due = new DateTime(2023, 1, 3, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(5960),
+                            Due = new DateTime(2022, 12, 31, 17, 19, 17, 897, DateTimeKind.Local).AddTicks(2920),
                             Status = 0,
                             Title = "Get books for school from DB"
                         },
@@ -102,9 +104,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 2,
                             AuthorId = 2,
-                            Created = new DateTime(2023, 1, 1, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6880),
+                            Created = new DateTime(2022, 12, 29, 17, 19, 17, 897, DateTimeKind.Local).AddTicks(3762),
                             Description = "Need some groceries from super market DB",
-                            Due = new DateTime(2023, 1, 6, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6884),
+                            Due = new DateTime(2023, 1, 3, 17, 19, 17, 897, DateTimeKind.Local).AddTicks(3767),
                             Status = 0,
                             Title = "Need some groceries from DB"
                         },
@@ -112,9 +114,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 3,
                             AuthorId = 3,
-                            Created = new DateTime(2023, 1, 1, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6891),
+                            Created = new DateTime(2022, 12, 29, 17, 19, 17, 897, DateTimeKind.Local).AddTicks(3773),
                             Description = "Purchase Camera from super market DB",
-                            Due = new DateTime(2023, 1, 4, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6892),
+                            Due = new DateTime(2023, 1, 1, 17, 19, 17, 897, DateTimeKind.Local).AddTicks(3774),
                             Status = 0,
                             Title = "Purchase Camera from DB"
                         });
@@ -128,7 +130,6 @@ namespace TaskAPI.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
                     b.Navigation("Author");
                 });
 #pragma warning restore 612, 618
