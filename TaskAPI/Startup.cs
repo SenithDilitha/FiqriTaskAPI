@@ -11,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskAPI.Services.Todos;
 using TaskAPI.Services.Authors;
+using TaskAPI.Services.Todos;
 
 namespace TaskAPI
 {
@@ -31,8 +31,9 @@ namespace TaskAPI
 
             services.AddControllers(options =>
             {
-                options.ReturnHttpNotAcceptable=true;
+                options.ReturnHttpNotAcceptable = true;
             }).AddXmlDataContractSerializerFormatters();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskAPI", Version = "v1" });

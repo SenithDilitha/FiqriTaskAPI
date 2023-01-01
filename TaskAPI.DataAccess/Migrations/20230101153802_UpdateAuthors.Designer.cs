@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPI.DataAccess;
 
 namespace TaskAPI.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDBContext))]
-    partial class TodoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230101153802_UpdateAuthors")]
+    partial class UpdateAuthors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,7 +130,6 @@ namespace TaskAPI.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
                     b.Navigation("Author");
                 });
 #pragma warning restore 612, 618

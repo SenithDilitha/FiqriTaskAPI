@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskAPI.Services.Authors;
 
@@ -9,6 +10,7 @@ namespace TaskAPI.Controllers
     public class AuthorsController : ControllerBase
     {
         private readonly IAuthorRepository _service;
+
         public AuthorsController(IAuthorRepository service)
         {
             _service = service;
@@ -18,18 +20,17 @@ namespace TaskAPI.Controllers
         public IActionResult GetAuthors()
         {
             var authors = _service.GetAllAuthors();
+
             return Ok(authors);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id?}")]
         public IActionResult GetAuthor(int id)
         {
             var author = _service.GetAuthor(id);
 
-            if (author == null)
-            {
-                return NotFound();
-            }
+            if (author == null) return NotFound();
+
             return Ok(author);
         }
     }
