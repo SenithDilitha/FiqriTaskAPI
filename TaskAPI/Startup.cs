@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using TaskAPI.Services.Authors;
 using TaskAPI.Services.Todos;
 
@@ -39,6 +40,8 @@ namespace TaskAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TaskAPI", Version = "v1" });
             });
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<ITodoRepository, TodoSqlServerService>();
             services.AddScoped<IAuthorRepository, AuthorSqlServerService>();
         }
@@ -51,6 +54,17 @@ namespace TaskAPI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskAPI v1"));
+            }
+            else
+            {
+                app.UseExceptionHandler(app =>
+                {
+                    app.Run(async context =>
+                    {
+                        context.Response.StatusCode = 500;
+                        await context.Response.WriteAsync("There was an error in the server. Contact Developer")
+                    });
+                });
             }
 
             app.UseHttpsRedirection();

@@ -26,8 +26,23 @@ namespace TaskAPI.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AddressNo")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("city")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("street")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -37,22 +52,34 @@ namespace TaskAPI.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            FullName = "Senith"
+                            AddressNo = "1",
+                            FullName = "Senith",
+                            city = "Colombo 1",
+                            street = "Street 1"
                         },
                         new
                         {
                             Id = 2,
-                            FullName = "Dilitha"
+                            AddressNo = "2",
+                            FullName = "Dilitha",
+                            city = "Colombo 2",
+                            street = "Street 2"
                         },
                         new
                         {
                             Id = 3,
-                            FullName = "Sumashi"
+                            AddressNo = "3",
+                            FullName = "Sumashi",
+                            city = "Colombo 3",
+                            street = "Street 3"
                         },
                         new
                         {
                             Id = 4,
-                            FullName = "Hansani"
+                            AddressNo = "4",
+                            FullName = "Hansani",
+                            city = "Colombo 4",
+                            street = "Street 4"
                         });
                 });
 
@@ -70,7 +97,8 @@ namespace TaskAPI.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<DateTime>("Due")
                         .HasColumnType("datetime2");
@@ -79,7 +107,9 @@ namespace TaskAPI.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
@@ -92,9 +122,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
-                            Created = new DateTime(2023, 1, 1, 21, 8, 2, 252, DateTimeKind.Local).AddTicks(6819),
+                            Created = new DateTime(2023, 1, 2, 0, 15, 23, 714, DateTimeKind.Local).AddTicks(6601),
                             Description = "Get some text books for school DB",
-                            Due = new DateTime(2023, 1, 3, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(5960),
+                            Due = new DateTime(2023, 1, 4, 0, 15, 23, 715, DateTimeKind.Local).AddTicks(3129),
                             Status = 0,
                             Title = "Get books for school from DB"
                         },
@@ -102,9 +132,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 2,
                             AuthorId = 2,
-                            Created = new DateTime(2023, 1, 1, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6880),
+                            Created = new DateTime(2023, 1, 2, 0, 15, 23, 715, DateTimeKind.Local).AddTicks(3738),
                             Description = "Need some groceries from super market DB",
-                            Due = new DateTime(2023, 1, 6, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6884),
+                            Due = new DateTime(2023, 1, 7, 0, 15, 23, 715, DateTimeKind.Local).AddTicks(3741),
                             Status = 0,
                             Title = "Need some groceries from DB"
                         },
@@ -112,9 +142,9 @@ namespace TaskAPI.DataAccess.Migrations
                         {
                             Id = 3,
                             AuthorId = 3,
-                            Created = new DateTime(2023, 1, 1, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6891),
+                            Created = new DateTime(2023, 1, 2, 0, 15, 23, 715, DateTimeKind.Local).AddTicks(3746),
                             Description = "Purchase Camera from super market DB",
-                            Due = new DateTime(2023, 1, 4, 21, 8, 2, 253, DateTimeKind.Local).AddTicks(6892),
+                            Due = new DateTime(2023, 1, 5, 0, 15, 23, 715, DateTimeKind.Local).AddTicks(3747),
                             Status = 0,
                             Title = "Purchase Camera from DB"
                         });
@@ -123,13 +153,17 @@ namespace TaskAPI.DataAccess.Migrations
             modelBuilder.Entity("TaskAPI.Models.Todo", b =>
                 {
                     b.HasOne("TaskAPI.Models.Author", "Author")
-                        .WithMany()
+                        .WithMany("Todos")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");
-                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("TaskAPI.Models.Author", b =>
+                {
+                    b.Navigation("Todos");
                 });
 #pragma warning restore 612, 618
         }
