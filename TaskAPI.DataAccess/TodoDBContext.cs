@@ -23,10 +23,10 @@ namespace TaskAPI.DataAccess
         {
             modelBuilder.Entity<Author>().HasData(new Author[]
             {
-                new Author {Id = 1, FullName = "Senith"},
-                new Author {Id = 2, FullName = "Dilitha"},
-                new Author {Id = 3, FullName = "Sumashi"},
-                new Author {Id = 4, FullName = "Hansani"}
+                new Author {Id = 1, FullName = "Senith", AddressNo = "1", street = "Street 1", city = "Colombo 1"},
+                new Author {Id = 2, FullName = "Dilitha", AddressNo = "2", street = "Street 2", city = "Colombo 2"},
+                new Author {Id = 3, FullName = "Sumashi", AddressNo = "3", street = "Street 3", city = "Colombo 3"},
+                new Author {Id = 4, FullName = "Hansani", AddressNo = "4", street = "Street 4", city = "Colombo 4"}
             });
 
             modelBuilder.Entity<Todo>().HasData(new Todo[]
