@@ -16,9 +16,38 @@ namespace TaskAPI.Services.Authors
             return _todoDBContext.Authors.ToList();
         }
 
+        public IList<Author> GetAllAuthors(string job, string search)
+        {
+            if (string.IsNullOrWhiteSpace(job) && string.IsNullOrWhiteSpace(search)) return GetAllAuthors();
+
+            var authorCollection = _todoDBContext.Authors as IQueryable<Author>;
+
+            if (!string.IsNullOrWhiteSpace(job))
+            {
+                job = job.Trim();
+                authorCollection = authorCollection.Where(t => t.JobRole == job);
+            }
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                search = search.Trim();
+                authorCollection = authorCollection.Where(t => t.FullName.Contains(search) || t.City.Contains(search));
+            }
+
+            return authorCollection.ToList();
+        }
+
         public Author GetAuthor(int AuthorId)
         {
             return _todoDBContext.Authors.Find(AuthorId);
+        }
+
+        public Author AddAuthor(Author author)
+        {
+            _todoDBContext.Authors.Add(author);
+            _todoDBContext.SaveChanges();
+
+            return _todoDBContext.Authors.Find(author.Id);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace TaskAPI
                     app.Run(async context =>
                     {
                         context.Response.StatusCode = 500;
-                        await context.Response.WriteAsync("There was an error in the server. Contact Developer")
+                        await context.Response.WriteAsync("There was an error in the server. Contact Developer");
                     });
                 });
             }
