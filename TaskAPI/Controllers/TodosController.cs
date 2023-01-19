@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using AutoMapper;
 using TaskAPI.Models;
 using TaskAPI.Services.Models;
@@ -61,6 +62,36 @@ namespace TaskAPI.Controllers
 
 
             return CreatedAtRoute("GetTodo", new {authorId = authorId, id= newTodoToReturn.Id}, newTodoToReturn);
+        }
+
+        [HttpPut("{todoId}")]
+        public IActionResult UpdateTodo(int authorId, int todoId, UpdateTodoDto todo)
+        {
+            var todoToBeUpdated = _todosService.GetTodo(authorId, todoId);
+
+            if (todoToBeUpdated == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(todo, todoToBeUpdated);
+
+            _todosService.UpdateTodo(todoToBeUpdated);
+            var todoToReturn = _mapper.Map<TodoDto>(todoToBeUpdated);
+
+            return CreatedAtRoute("GetTodo", new {authorId = authorId, id = todoId}, todoToReturn);
+        }
+
+        [HttpDelete("{todoId}")]
+        public IActionResult DeleteTodo(int authorId, int todoId)
+        {
+            var todoToBeDeleted = _todosService.GetTodo(authorId, todoId);
+
+            if (todoToBeDeleted == null) return NotFound();
+
+            _todosService.DeleteTodo(todoToBeDeleted);
+
+            return NoContent();
         }
     }
 }
