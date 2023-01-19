@@ -44,5 +44,15 @@ namespace TaskAPI.Services.Todos
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateTodo(Todo todo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteTodo(Todo todo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
